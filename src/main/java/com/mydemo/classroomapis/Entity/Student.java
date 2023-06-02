@@ -3,35 +3,25 @@ package com.mydemo.classroomapis.Entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
 @Data
-public class Student {
+@DiscriminatorValue("STUDENT")
+public class Student extends Person {
 
-    @Id
-    @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
-    )
-    private Long id;
     private String studentName;
     private String studentPhone;
 
     @ManyToOne
-    @JoinColumn(
-            name = "student_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name = "student_book_fk"
-            )
-    )
+    @JoinColumn(name = "parent_id")
     private Parent parent;
+
+    @ManyToMany(mappedBy = "students")
+    private List<Teacher> teachers;
+
+    @ManyToMany(mappedBy = "")
+    private List<Subject> subjects;
 
 }

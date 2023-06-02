@@ -3,6 +3,7 @@ package com.mydemo.classroomapis.Entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "subject")
@@ -22,5 +23,16 @@ public class Subject {
     private Long id;
     private String subjectName;
     private String subjectDescription;
+
+    @ManyToMany
+    @JoinTable(
+            name = "subject_student",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id")
+    )
+    private List<Student> students;
+
+    @OneToOne(mappedBy = "subject")
+    private Teacher teacher;
 
 }

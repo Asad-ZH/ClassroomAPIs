@@ -3,11 +3,13 @@ package com.mydemo.classroomapis.Entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "teacher")
 @Data
-public class Teacher {
+@DiscriminatorValue("TEACHER")
+public class Teacher extends Person {
 
     @Id
     @SequenceGenerator(
@@ -21,5 +23,18 @@ public class Teacher {
     )
     private Long id;
     private String teacherName;
+
+    @ManyToMany
+    @JoinTable(
+            name = "teacher_student",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private List<Student> students;
+
+
+    @OneToOne()
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
 
 }

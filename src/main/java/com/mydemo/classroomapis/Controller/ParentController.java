@@ -18,11 +18,6 @@ public class ParentController {
     }
 
     @GetMapping
-    public String get() {
-        return "Hello Parent";
-    }
-
-    @GetMapping
     public List<String> getParent() {
         return parentService.getParent();
     }

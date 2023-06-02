@@ -8,28 +8,14 @@ import java.util.List;
 @Entity
 @Table(name = "parent")
 @Data
-public class Parent {
+@DiscriminatorValue("PARENT")
+public class Parent extends Person {
 
-    @Id
-    @SequenceGenerator(
-            name = "parent_sequence",
-            sequenceName = "parent_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "parent_sequence"
-    )
-    private Long id;
-    private String motherName;
-    private String fatherName;
+    private String name;
     private String parentAddress;
     private String parentPhone;
 
-    @OneToMany(
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Student> students;
 
 
