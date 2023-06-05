@@ -15,7 +15,8 @@ public class Parent extends Person {
     private String parentAddress;
     private String parentPhone;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parent",
+            cascade = CascadeType.ALL)
     private List<Student> students;
 
 

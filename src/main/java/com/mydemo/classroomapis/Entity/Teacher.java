@@ -33,8 +33,7 @@ public class Teacher extends Person {
     private List<Student> students;
 
 
-    @OneToOne()
-    @JoinColumn(name = "subject_id")
+    @OneToOne(mappedBy = "teacher", cascade = CascadeType.ALL)
     private Subject subject;
 
 }

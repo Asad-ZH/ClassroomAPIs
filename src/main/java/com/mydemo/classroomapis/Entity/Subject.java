@@ -27,12 +27,13 @@ public class Subject {
     @ManyToMany
     @JoinTable(
             name = "subject_student",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "subject_id")
+            joinColumns = @JoinColumn(name = "subject_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
     )
     private List<Student> students;
 
-    @OneToOne(mappedBy = "subject")
+    @OneToOne
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
 }

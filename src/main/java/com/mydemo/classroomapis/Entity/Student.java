@@ -14,14 +14,14 @@ public class Student extends Person {
     private String studentName;
     private String studentPhone;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Parent parent;
 
     @ManyToMany(mappedBy = "students")
     private List<Teacher> teachers;
 
-    @ManyToMany(mappedBy = "")
+    @ManyToMany(mappedBy = "students")
     private List<Subject> subjects;
 
 }
