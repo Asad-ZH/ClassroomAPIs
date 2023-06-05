@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/subject")
 public class SubjectController {
 
-    @GetMapping
+    @GetMapping("/test")
     public String get() {
         return "Hello Subject";
     }
