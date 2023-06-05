@@ -23,6 +23,11 @@ public class StudentService {
         return student.getSubjects().stream().map(Subject::getSubjectName).toList();
     }
 
+    public List<String> getTeachers() {
+        Student student = fetchData();
+        return student.getTeachers().stream().map(Teacher::getTeacherName).toList();
+    }
+
     public Student fetchData() {
 
         String username = null;
@@ -35,8 +40,4 @@ public class StudentService {
         return studentRepository.findByUsername(username);
     }
 
-    public List<String> getTeachers() {
-        Student student = fetchData();
-        return student.getTeachers().stream().map(Teacher::getTeacherName).toList();
-    }
 }
