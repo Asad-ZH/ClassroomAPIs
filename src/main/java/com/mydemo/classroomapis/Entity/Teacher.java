@@ -33,7 +33,7 @@ public class Teacher extends Person {
     private List<Student> students;
 
 
-    @OneToOne(mappedBy = "teacher", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "teacher", cascade = CascadeType.MERGE)
     private Subject subject;
 
 }

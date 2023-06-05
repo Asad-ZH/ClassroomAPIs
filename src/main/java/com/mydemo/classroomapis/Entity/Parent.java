@@ -11,7 +11,7 @@ import java.util.List;
 @DiscriminatorValue("PARENT")
 public class Parent extends Person {
 
-    private String name;
+    private String parentName;
     private String parentAddress;
     private String parentPhone;
 

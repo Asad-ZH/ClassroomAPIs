@@ -32,7 +32,7 @@ public class ClassroomApIsApplication {
             parent.setUsername("linda");
             parent.setPassword(passwordConfig.passwordEncoder().encode("password"));
             parent.setRole("PARENT");
-            parent.setName("Linda");
+            parent.setParentName("Linda");
             parent.setParentAddress("123 Main St");
             parent.setParentPhone("1234567890");
 
