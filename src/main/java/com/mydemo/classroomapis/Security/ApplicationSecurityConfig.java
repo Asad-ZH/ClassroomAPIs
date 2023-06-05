@@ -30,8 +30,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+                .antMatchers("/", "index", "/css/*", "/js/*", "/swagger-ui.html", "/swagger-ui/index.html").permitAll()
+                .antMatchers("/api/subject/**").permitAll()
                 .antMatchers("/api/student/**").hasAuthority("STUDENT")
                 .antMatchers("/api/parent/**").hasAuthority("PARENT")
                 .antMatchers("/api/teacher/**").hasAuthority("TEACHER")

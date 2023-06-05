@@ -18,16 +18,6 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<String> getSubjects() {
-        Student student = fetchData();
-        return student.getSubjects().stream().map(Subject::getSubjectName).toList();
-    }
-
-    public List<String> getTeachers() {
-        Student student = fetchData();
-        return student.getTeachers().stream().map(Teacher::getTeacherName).toList();
-    }
-
     public Student fetchData() {
 
         String username = null;
@@ -38,6 +28,16 @@ public class StudentService {
             username = principal.toString();
         }
         return studentRepository.findByUsername(username);
+    }
+
+    public List<String> getSubjects() {
+        Student student = fetchData();
+        return student.getSubjects().stream().map(Subject::getSubjectName).toList();
+    }
+
+    public List<String> getTeachers() {
+        Student student = fetchData();
+        return student.getTeachers().stream().map(Teacher::getTeacherName).toList();
     }
 
 }

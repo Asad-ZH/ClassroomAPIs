@@ -1,9 +1,7 @@
 package com.mydemo.classroomapis.Controller;
 
 import com.mydemo.classroomapis.Service.TeacherService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +28,10 @@ public class TeacherController {
     @GetMapping("/students")
     public List<String> getStudents() {
         return teacherService.getStudents();
+    }
+
+    @PostMapping("/register-subject")
+    public void registerSubject(@RequestParam String subjectName) {
+        teacherService.registerSubject(subjectName);
     }
 }

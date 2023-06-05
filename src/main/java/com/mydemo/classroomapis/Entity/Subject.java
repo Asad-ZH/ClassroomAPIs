@@ -23,7 +23,6 @@ public class Subject {
     private Long id;
     private String subjectName;
     private String subjectDescription;
-
     @ManyToMany
     @JoinTable(
             name = "subject_student",

@@ -1,7 +1,9 @@
 package com.mydemo.classroomapis.Service;
 
 import com.mydemo.classroomapis.Entity.Student;
+import com.mydemo.classroomapis.Entity.Subject;
 import com.mydemo.classroomapis.Entity.Teacher;
+import com.mydemo.classroomapis.Repository.SubjectRepository;
 import com.mydemo.classroomapis.Repository.TeacherRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,9 +15,11 @@ import java.util.List;
 public class TeacherService {
 
     private final TeacherRepository teacherRepository;
+    private final SubjectRepository subjectRepository;
 
-    public TeacherService(TeacherRepository teacherRepository) {
+    public TeacherService(TeacherRepository teacherRepository, SubjectRepository subjectRepository) {
         this.teacherRepository = teacherRepository;
+        this.subjectRepository = subjectRepository;
     }
 
     public String getSubjects() {
@@ -39,5 +43,17 @@ public class TeacherService {
     public List<String> getStudents() {
         Teacher teacher = fetchData();
         return teacher.getStudents().stream().map(Student::getStudentName).toList();
+    }
+
+    public void registerSubject(String subjectName) {
+
+        Teacher teacher = fetchData();
+        Subject subject = subjectRepository.findBySubjectName(subjectName);
+
+        teacher.setSubject(subject);
+        subject.setTeacher(teacher);
+        teacherRepository.save(teacher);
+        subjectRepository.save(subject);
+
     }
 }
